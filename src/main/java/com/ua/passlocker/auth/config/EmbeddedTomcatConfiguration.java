@@ -1,13 +1,13 @@
 package com.ua.passlocker.auth.config;
 
+import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class EmbededServletConfig {
+public class EmbeddedTomcatConfiguration {
 
     @Value("${auth.internal.port}")
     private Integer port;
@@ -15,9 +15,10 @@ public class EmbededServletConfig {
     @Bean
     public TomcatServletWebServerFactory servletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        factory.addConnectorCustomizers((TomcatConnectorCustomizer) connector -> {
-            connector.setPort(port);
-        });
+        Connector connector = new Connector();
+        connector.setPort(port);
+        factory.addAdditionalTomcatConnectors(connector);
         return factory;
     }
+
 }
