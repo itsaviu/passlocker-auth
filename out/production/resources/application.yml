@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${AUTH_DB_URL:jdbc:postgresql://localhost:5432/passlocker_auth_dev}
+    username: ${AUTH_DB_USER:postgres}
+    password: ${AUTH_DB_PASS}
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+server:
+  servlet:
+    context-path: /auth
+
+auth:
+  secret: nmmbqvlUFPaKHHxuP8K2azlC1X7mhgLqDjxGGiwQCf2v9XWdqAJ1Fql_Vj4LAq8qgg6JmBCGsVMC8hy1zY3zjePjUParppPjvvJAitdazHPdmHrqK6hVKaB6GXX8WSbnS1v3PLdAMp1Rmho5lqFJYF4w6vmttCVL3Oqhi1ll_bMO1fd4ruEJpA9pXdPNbSQuf_PCo_NpSwD40v2jtsKwjYhFcYt_17DxEw6f53a_jSYNAYeZvgjyqHyDkhJpiKREhKzebj1dKvTqgqdCgF9PTy-MOQNpeh43hEgDIOhIOXC14r7aN7iZClXrV3uO2Dr9tcCeoIp3mWyXn4f085vWIQ
