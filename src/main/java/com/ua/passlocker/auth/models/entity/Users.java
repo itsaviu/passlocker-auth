@@ -1,4 +1,4 @@
-package com.ua.passlocker.auth.model.entity;
+package com.ua.passlocker.auth.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.ua.passlocker.auth.utils.SecurityUtils;

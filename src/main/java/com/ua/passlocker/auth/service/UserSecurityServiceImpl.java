@@ -1,7 +1,7 @@
 package com.ua.passlocker.auth.service;
 
-import com.ua.passlocker.auth.model.UserDetailsImp;
-import com.ua.passlocker.auth.model.entity.Users;
+import com.ua.passlocker.auth.models.UserDetailsImp;
+import com.ua.passlocker.auth.models.entity.Users;
 import com.ua.passlocker.auth.repo.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -5,5 +5,6 @@ CREATE TABLE users (
     email_id VARCHAR (200) NOT NULL ,
     client_secret TEXT NOT NULL,
     confirmed BOOLEAN DEFAULT FALSE NOT NULL,
-    active BOOLEAN DEFAULT TRUE NOT NULL
+    active BOOLEAN DEFAULT TRUE NOT NULL,
+    created_at TIMESTAMP  NOT NULL
 );

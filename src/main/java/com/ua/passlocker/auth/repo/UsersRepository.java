@@ -1,6 +1,6 @@
 package com.ua.passlocker.auth.repo;
 
-import com.ua.passlocker.auth.model.entity.Users;
+import com.ua.passlocker.auth.models.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

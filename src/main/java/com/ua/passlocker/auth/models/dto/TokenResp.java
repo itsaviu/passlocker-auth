@@ -1,4 +1,4 @@
-package com.ua.passlocker.auth.model.dto;
+package com.ua.passlocker.auth.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

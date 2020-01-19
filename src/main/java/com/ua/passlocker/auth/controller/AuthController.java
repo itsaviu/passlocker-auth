@@ -1,7 +1,7 @@
 package com.ua.passlocker.auth.controller;
 
 
-import com.ua.passlocker.auth.model.dto.RegisterUserReq;
+import com.ua.passlocker.auth.models.dto.RegisterUserReq;
 import com.ua.passlocker.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

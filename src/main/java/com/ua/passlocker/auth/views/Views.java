@@ -1,4 +1,5 @@
 package com.ua.passlocker.auth.views;
 
-public class Views {
+public interface Views {
+    class UserViews {}
 }

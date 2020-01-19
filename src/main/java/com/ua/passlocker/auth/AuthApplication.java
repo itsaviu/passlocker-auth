@@ -1,8 +1,10 @@
 package com.ua.passlocker.auth;
 
+import com.ua.passlocker.auth.config.EmbeddedTomcatConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
@@ -23,7 +25,8 @@ import java.util.Collections;
 
 @SpringBootApplication
 @EnableSwagger2
-public class Application {
+@Import(EmbeddedTomcatConfiguration.class)
+public class AuthApplication {
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -68,6 +71,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(AuthApplication.class, args);
     }
 }
