@@ -1,10 +1,10 @@
 package com.ua.passlocker.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ua.passlocker.auth.model.UserDetailsImp;
-import com.ua.passlocker.auth.model.dto.TokenResp;
-import com.ua.passlocker.auth.model.dto.UserReq;
-import com.ua.passlocker.auth.security.JWTTokenProvider;
+import com.ua.passlocker.auth.models.UserDetailsImp;
+import com.ua.passlocker.auth.models.dto.TokenResp;
+import com.ua.passlocker.auth.models.dto.UserReq;
+import com.ua.passlocker.auth.security.JWTSecurityProvider;
 import com.ua.passlocker.auth.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,7 +32,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private ObjectMapper objectMapper;
 
     @Autowired
-    private JWTTokenProvider jwtTokenProvider;
+    private JWTSecurityProvider jwtSecurityProvider;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -63,7 +63,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         UserDetailsImp userReq = (UserDetailsImp) authResult.getPrincipal();
         String hashKey = SecurityUtils.generateMasterToken((String) request.getAttribute(ENCRYPT_ATTRIBUTE_NAME), userReq.getClientSecret());
-        String tokenResp = objectMapper.writeValueAsString(new TokenResp(jwtTokenProvider.doGenerateToken(userReq.getUsername()), hashKey));
+        String tokenResp = objectMapper.writeValueAsString(new TokenResp(jwtSecurityProvider.doGenerateToken(userReq.getUsername(), userReq.getEmailId()), hashKey));
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         PrintWriter writer = response.getWriter();
         writer.write(tokenResp);
