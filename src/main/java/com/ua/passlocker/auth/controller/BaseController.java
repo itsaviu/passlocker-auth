@@ -1,6 +1,7 @@
 package com.ua.passlocker.auth.controller;
 
 import com.ua.passlocker.auth.exceptions.UserAlreadyExistException;
+import com.ua.passlocker.auth.exceptions.UserNotExistException;
 import com.ua.passlocker.auth.models.dto.ErrorResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class BaseController {
 
-    @ExceptionHandler(value = {UserAlreadyExistException.class})
+    @ExceptionHandler(value = {UserAlreadyExistException.class, UserNotExistException.class})
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResp notExistException(Exception ex) {

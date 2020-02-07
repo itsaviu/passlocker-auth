@@ -35,6 +35,7 @@ public class Users {
 
     private String clientSecret;
 
+    @JsonView({Views.UserViews.class})
     private Boolean confirmed;
 
     private Boolean active;

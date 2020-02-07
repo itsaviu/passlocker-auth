@@ -1,11 +1,13 @@
 package com.ua.passlocker.auth.service;
 
 import com.ua.passlocker.auth.exceptions.UserAlreadyExistException;
+import com.ua.passlocker.auth.exceptions.UserNotExistException;
 import com.ua.passlocker.auth.models.dto.RegisterUserReq;
 import com.ua.passlocker.auth.models.dto.UserDetailReq;
 import com.ua.passlocker.auth.models.entity.Users;
 import com.ua.passlocker.auth.repo.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +31,10 @@ public class UserService {
             return usersRepository.findAll();
 
         return usersRepository.findAllById(userDetailReq.getUserIds());
+    }
+
+    public Users fetchCurrentUser(String emailId) {
+        return usersRepository.findByEmailId(emailId).orElseThrow(() -> new UserNotExistException(String.format("User Not Exist %s", emailId)));
     }
 
 }
