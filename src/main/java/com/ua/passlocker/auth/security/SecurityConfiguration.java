@@ -1,5 +1,6 @@
 package com.ua.passlocker.auth.security;
 
+import com.ua.passlocker.auth.filter.AuthorizationFilter;
 import com.ua.passlocker.auth.filter.JWTAuthenticationFilter;
 import com.ua.passlocker.auth.service.UserSecurityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTAuthenticationFilter jwtAuthenticationFilter;
 
+    @Autowired
+    private AuthorizationFilter authorizationFilter;
+
     @Value("${auth.internal.port}")
     private Integer port;
-
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
 
     @Autowired
@@ -68,7 +70,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilter(jwtAuthenticationFilter);
+                .addFilter(jwtAuthenticationFilter)
+                .addFilterBefore(authorizationFilter, JWTAuthenticationFilter.class);
     }
 
     private RequestMatcher forPort(final int port) {

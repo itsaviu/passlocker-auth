@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.ua.passlocker.auth.utils.Utils.*;
+import static com.ua.passlocker.auth.utils.Utils.formatedSecret;
 
 @Component
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {

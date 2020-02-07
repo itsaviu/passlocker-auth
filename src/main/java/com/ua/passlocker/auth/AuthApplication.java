@@ -42,10 +42,9 @@ public class AuthApplication {
     @Bean
     public Docket apiMonitor() {
         ParameterBuilder parameterBuilder = new ParameterBuilder();
-        parameterBuilder.name("X-AUTH-TOKEN")
+        parameterBuilder.name("Authorization")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
-                .required(true)
                 .build();
 
         return new Docket(DocumentationType.SWAGGER_2)
@@ -53,7 +52,7 @@ public class AuthApplication {
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build()
-                //.globalOperationParameters(Collections.singletonList(parameterBuilder.build()))
+                .globalOperationParameters(Collections.singletonList(parameterBuilder.build()))
                 .apiInfo(apiInfo());
     }
 
